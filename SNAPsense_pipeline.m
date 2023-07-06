@@ -46,7 +46,7 @@ load(cell_info_mat,'cell');
 
 %% Check data
 draw_centroids(cell.Centroids,cell.Shape,cell.Cell_Name)
-draw_activity_histogram(cell.Raw_Data, cell.Active)
+draw_activity_histogram(cell.Raw_Data, cell.Active, cell.Cell_Name)
 
 %% Cluster analysis
 
