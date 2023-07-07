@@ -44,7 +44,7 @@ scatter(centroids(logical(RefII_ClusID_minN),1), centroids(logical(RefII_ClusID_
 cellfun(@(x) plot(x, 'FaceAlpha', 0), segmented_clusters)
 hold off
 daspect([1 1 1])
-title([cell_name ' Refined'], Interpreter="none")
+title([cell_name ' Refined Clusters'], Interpreter="none")
 savefig('figures/RefII_minN_clusters/' + cell_name + '_refined_clusters.fig');
 print('figures/RefII_minN_clusters/' + cell_name + '_refined_clusters.tiff', '-dtiff','-r300');
 

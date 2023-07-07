@@ -17,12 +17,17 @@ function SNAPsense_pipeline(cell_name)
 %     cell.Active: Cell array where each cell contains the activity (0:inactive, 1:active) for one track.
 %     cell.ROI: ImageJ ROI object
 %     cell.Shape: ImageJ ROI as a polyshape object in um
+%     cell.Edge_Dists: Distance to cell edge for each localization
+
 
 % Add scripts to path
 addpath(genpath('scripts/'))
 
 % Parameters
-pixel_size = 0.1067; % pixel size in um
+pixel_size = 0.1067;  % pixel size in um
+min_frame = 4;  % Minimum lifetime in frames for tracks to be used in 
+nlayers = 4;  % Number of layers by the edge
+layer_width = 1;  % Layer width in um
 
 % Cluster analysis parameters
 RIcutoff = 2.5;  % Recruitment interval cutoff for the temporal separation of clusters
@@ -86,10 +91,11 @@ cluster_refinement_II(refIclusfile, RIcutoff, cell.Exposure, cell.Tracks, cell.C
 
 % Save results
 cell.minN = minN;
-save(cell_info_mat, cell)
+save(cell_info_mat, 'cell')
 
 
 %% Calculate rates
-% model
+model(min_frame, nlayers, layer_width, 0, cell.Cell_Name, cell.Exposure, cell.Shape, cell.Tracks, ...
+    cell.Centroids, cell.Active, cell.RefI_ClusID, cell.Edge_Dists,clusfile)
 
 end
