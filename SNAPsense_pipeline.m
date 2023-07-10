@@ -19,7 +19,6 @@ function SNAPsense_pipeline(cell_name)
 %     cell.Shape: ImageJ ROI as a polyshape object in um
 %     cell.Edge_Dists: Distance to cell edge for each localization
 
-
 % Add scripts to path
 addpath(genpath('scripts/'))
 

@@ -1,5 +1,7 @@
 function [koff,kdi,kda,koi,ka,koa,ki,pona,poni,psucs,psuc,inact_pop,act_pop] = calculate_rates(exposure, suptitle_suffix, save_suffix, save_dir, tracks, activities)
 
+warning('off','curvefit:fit:noStartPoint')
+
 %% Lifetimes and Decay Rates
 interp_acts = cellfun( ...
     @(track, act) ...
