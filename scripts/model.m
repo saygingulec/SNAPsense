@@ -2,7 +2,7 @@ function model(min_frame,nlayers,layer_width,exclude_clusters,cell_name,exposure
 %%
 disp("Modeling the dynamics of " + cell_name)
 
-fig_save_dir = "figures\model\";
+fig_save_dir = "figures/model/";
 warning off
 mkdir(fig_save_dir)
 warning on
