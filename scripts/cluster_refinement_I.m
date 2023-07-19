@@ -15,7 +15,7 @@
 %
 % Part of the cluster_segmentation.m pipeline.
 % 2018 May 8 / Mike Pablo
-function cluster_refinement_I(clusfile, tracks, cell_name,centroids,shape,pixel_size)
+function cluster_refinement_I(clusfile, tracks, cell_name,centroids,shape,pixel_size,refIclusfile)
 % also returns the total # of tracks [that were unassigned to clusters] and that visited multiple voronoi polygons,
 % and the # of tracks that were unassigned to clusters.
 
@@ -82,7 +82,6 @@ for j=1:nUnassigned
     end
 end
 
-save("data/" + cell_name + "/" + cell_name + '_refinementI_clusTrackIDs.mat', ...
-     'cluster_track_IDs','nMultVisTrackFromUnassigned','nUnassigned');
+save(refIclusfile, 'cluster_track_IDs','nMultVisTrackFromUnassigned','nUnassigned');
 
 end

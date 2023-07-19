@@ -17,12 +17,11 @@
 % Part of the cluster_segmentation.m pipeline.
 % 2018 May 9 / Mike Pablo
 
-function cluster_refinement_II(refIclusfile, RIcutoff, exposure, tracks, cell_name)
+function cluster_refinement_II(refIclusfile, RIcutoff, exposure, tracks, cell_name, refIIclusfile, fig_save_dir)
 
 tagclusID = load(refIclusfile);
 
-figSubDir = "RIs_pre_refinementII/";
-parentFigDir = 'figures/' + figSubDir;
+parentFigDir = fig_save_dir;
 warning('off');
 mkdir(parentFigDir);
 warning('on');
@@ -31,7 +30,7 @@ refined_cluster_track_IDs = refine_cluster_results(tagclusID.cluster_track_IDs, 
                                                    exposure, tracks, RIcutoff,...
                                                    parentFigDir,cell_name);
 
-save("data/" + cell_name + "/" + cell_name + '_refinementII_clusTrackIDs.mat','refined_cluster_track_IDs');
+save(refIIclusfile,'refined_cluster_track_IDs');
 
 end
 

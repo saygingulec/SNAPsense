@@ -1,4 +1,4 @@
-function [RefI_ClusID RefI_ClusID_minN RefII_ClusID RefII_ClusID_minN] = examine_clusters(minN, clusfile, refIclusfile, refIIclusfile, tracks, cell_name, shape, centroids)
+function [RefI_ClusID, RefI_ClusID_minN, RefII_ClusID, RefII_ClusID_minN] = examine_clusters(minN, clusfile, refIclusfile, refIIclusfile, tracks, cell_name, shape, centroids, fig_save_dir)
 
 set(groot,'defaultAxesTickLabelInterpreter','none');
 
@@ -45,8 +45,8 @@ cellfun(@(x) plot(x, 'FaceAlpha', 0), segmented_clusters)
 hold off
 daspect([1 1 1])
 title([cell_name ' Refined Clusters'], Interpreter="none")
-savefig('figures/RefII_minN_clusters/' + cell_name + '_refined_clusters.fig');
-print('figures/RefII_minN_clusters/' + cell_name + '_refined_clusters.tiff', '-dtiff','-r300');
+savefig(fig_save_dir + "/" + cell_name + '_refined_clusters.fig');
+print(fig_save_dir + "/" + cell_name + '_refined_clusters.tiff', '-dtiff','-r300');
 
 
 end

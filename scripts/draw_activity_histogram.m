@@ -1,7 +1,7 @@
-function draw_activity_histogram(raw_data,activity,cell_name)
+function draw_activity_histogram(raw_data,activity,cell_name,fig_save_dir)
 
 warning off
-mkdir figures/activity_histogram
+mkdir(fig_save_dir)
 warning on
 
 activities = cell2mat(activity);
@@ -17,7 +17,7 @@ plot(active_points(active_bound,1), active_points(active_bound,2),'g',LineWidth=
 legend(["" "Active"])
 hold off
 
-savefig("figures/activity_histogram/" + cell_name + "_activity_histogram.fig");
-print('-dtiff',"figures/activity_histogram/" + cell_name + "_activity_histogram.tif",'-r300');
+savefig(fig_save_dir + "/" + cell_name + "_activity_histogram.fig");
+print('-dtiff',fig_save_dir + "/" + cell_name + "_activity_histogram.tif",'-r300');
 
 end

@@ -2,7 +2,7 @@ function draw_centroids(centroids, cell_ps, cell_name)
 
 warning('off','MATLAB:MKDIR:DirectoryExists')
 
-mkdir figures/draw_centroids
+mkdir(fig_save_dir)
 
 f = figure;
 hold on
@@ -14,7 +14,7 @@ title(cell_name, 'interpreter', 'none')
 daspect([1 1 1])
 hold off
 
-savefig(f,"figures/draw_centroids/" + cell_name + "_roi_test.fig");
-print(f,'-dtiff',"figures/draw_centroids/" + cell_name + "_roi_test.tif",'-r300');
+savefig(f,fig_save_dir + "/" + cell_name + "_roi_test.fig");
+print(f,'-dtiff',fig_save_dir + "/" + cell_name + "_roi_test.tif",'-r300');
 
 end

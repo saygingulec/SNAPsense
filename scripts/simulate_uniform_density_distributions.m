@@ -84,5 +84,5 @@ for sim_rep_idx = 1:nsims
     density_distrs{sim_rep_idx} = xyden(:,3);
 end % sim reps
 
-save("data/" + cell_name + "/" + cell_name + '_sim_den_distr.mat','density_distrs','pad_size', 'cell_name');
+save(sim_distrs,'density_distrs','pad_size', 'cell_name');
 

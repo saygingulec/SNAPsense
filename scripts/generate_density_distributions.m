@@ -61,7 +61,7 @@ xyden(:,3) = xyden(:,3)/(1000^2);  % Density is now in localizations/nm2
 density_distrs = xyden(:,3);
 
 % Save output
-save("data/" + cell_name + "/" + cell_name + '_exp_den_distr.mat','density_distrs','pad_size', 'polys');
+save(exp_distrs,'density_distrs','pad_size','polys');
 
 
 % %% Plot (takes too long to plot)

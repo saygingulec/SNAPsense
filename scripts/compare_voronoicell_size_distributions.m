@@ -14,7 +14,7 @@
 %
 % Part of the cluster_segmentation.m pipeline.
 
-function compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_name)
+function compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_name, threshold_data)
 %%
 warning('off');
 mkdir('figures');
@@ -44,7 +44,7 @@ cutoffs = get_cutoff(exp_areas,sim_areas,binwidth);
 % Save cutoff
 cutoffs = 1./cutoffs; % convert area to density
 bin_cutoffs = nan(size(cutoffs));
-save("data/" + cell_name + "/" + cell_name + '_voronoi_thresh','cutoffs','bin_cutoffs','binwidth');
+save(threshold_data,'cutoffs','bin_cutoffs','binwidth');
 
 % Plot and save
 plot_single_cell_smoothed_intersected(exp_areas, sim_areas, tag_color, ...

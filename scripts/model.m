@@ -1,12 +1,9 @@
-function model(min_frame,nlayers,layer_width,exclude_clusters,cell_name,exposure,shape,all_tracks,all_centroids,all_activities,all_clusters,all_edge_dists,clusfile)
+function model(min_frame,nlayers,layer_width,exclude_clusters,cell_name,exposure,shape,all_tracks,all_centroids,all_activities,all_clusters,all_edge_dists,clusfile,fig_save_dir)
 %%
 disp("Modeling the dynamics of " + cell_name)
-
-fig_save_dir = "figures/model/";
 warning off
 mkdir(fig_save_dir)
 warning on
-
 
 % Variables
 exposure = exposure * 0.001; % exposure in seconds
@@ -70,8 +67,8 @@ plot(shape,FaceAlpha=0)
 cellfun(@(x) plot(x, 'FaceAlpha', 0), segmented_clusters)
 title(suptitle_suffix + newline + "Selected Tracks", Interpreter="none")
 hold off
-savefig('figures/model/' + save_suffix + '_selected_tracks.fig');
-print('figures/model/' + save_suffix + '_selected_tracks.tiff', '-dtiff','-r300');
+savefig(fig_save_dir + "/" + save_suffix + '_selected_tracks.fig');
+print(fig_save_dir + "/" + save_suffix + '_selected_tracks.tiff', '-dtiff','-r300');
 
 
 %% Calculate rates and save plots
@@ -79,7 +76,7 @@ print('figures/model/' + save_suffix + '_selected_tracks.tiff', '-dtiff','-r300'
 [koff,kdi,kda,koi,ka,koa,ki,pona,poni,psucs,psuc,inact_pop,act_pop] = calculate_rates(exposure, suptitle_suffix, save_suffix, fig_save_dir, tracks, activities);
 rates_mat = [rates_mat;koff,kdi,kda,koi,ka,koa,ki,pona,poni,psucs,psuc,inact_pop,act_pop];
 
-save("data/" + cell_name + "/" + save_suffix + "_rates.mat", ...
+save(rate_save_dir + "/" + save_suffix + "_rates.mat", ...
      "koff", "pona", "poni", "koa", "ki", "koi", "ka", "psuc", "psucs", ...
      "inact_pop", "act_pop", "tracks", "shape", "save_suffix", ...
      "cell_name", "activities", "all_clusters", "edge_dists", "min_frame", "label") %"B", 

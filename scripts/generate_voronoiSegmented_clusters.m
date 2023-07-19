@@ -10,7 +10,7 @@
 % Part of the cluster_segmentation.m pipeline.
 
 
-function generate_voronoiSegmented_clusters(threshold_data, exp_distrs, centroids, cell_name, shape, pad_size)
+function generate_voronoiSegmented_clusters(threshold_data, exp_distrs, centroids, cell_name, shape, pad_size, fig_save_dir)
 
 warning off
 mkdir('figures/raw_clusters')
@@ -69,7 +69,7 @@ end
 segmented_clusters = segmented_clusters(cellfun(@(x) ~isempty(x),segmented_clusters));
 
 % Save output
-save("data/" + cell_name + "/" + cell_name + '_voronoi_clus.mat','segmented_clusters','pad_size','threshold_data');
+save(clusfile,'segmented_clusters','pad_size','threshold_data');
 
 
 % Plot
@@ -81,8 +81,8 @@ cellfun(@(x) plot(x), segmented_clusters)
 title([cell_name ' Raw Clusters'], Interpreter="none")
 daspect([1 1 1])
 hold off
-savefig("figures/raw_clusters/" + cell_name + "_raw_clusters.fig");
-print("figures/raw_clusters/" + cell_name + "_raw_clusters.tiff", '-dtiff','-r300');
+savefig(fig_save_dir + "/" + cell_name + "_raw_clusters.fig");
+print(fig_save_dir + "/" + cell_name + "_raw_clusters.tiff", '-dtiff','-r300');
 close
 
 end
