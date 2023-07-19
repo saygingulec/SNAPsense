@@ -15,7 +15,7 @@
 % Part of the cluster_segmentation.m pipeline.
 
 function compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_name)
-
+%%
 warning('off');
 mkdir('figures');
 mkdir('figures/vor_seg_clus_comp')
@@ -53,6 +53,7 @@ end
 
 
 function cutoff = get_cutoff(expdata,simdata50x,binwidth)
+%%
 % Find the intesection of the probability distributions between the
 % simulated mean and the experimental data. Apply smoothing prior to
 % intersection checking; empirically chose 5pt Gaussian smooth.
@@ -82,6 +83,7 @@ end
 
 function plot_single_cell_smoothed_intersected(expdata,simdata50x,expcolor, ...
     simcolor,explabel,simlabel,binwidth,xplotwindow,savename)
+%%
 f= figure('visible','on'); hold on
 [exp_distr,exp_edges]=histcounts(expdata,'binwidth',binwidth);
 nsimreps = height(simdata50x);

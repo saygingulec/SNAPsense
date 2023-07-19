@@ -1,5 +1,6 @@
 results/
 data/
+rates/
 preprocessing/
 figures/
 summary/
@@ -7,4 +8,5 @@ HARDCODED_VARIABLES.TXT
 FIX_THESE.TXT
 *.asv
 *.out
-
+summarise_results.m
+summary_visualization.mlx

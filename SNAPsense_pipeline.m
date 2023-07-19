@@ -45,33 +45,33 @@ refIclusfile = cell_folder + cell_name + '_refinementI_clusTrackIDs.mat';
 refIIclusfile = cell_folder + cell_name + '_refinementII_clusTrackIDs.mat';
 
 % Load cell info
-load(cell_info_mat,'cell');
+load(cell_info_mat,'cell_info');
 
 
 %% Check data
-draw_centroids(cell.Centroids,cell.Shape,cell.Cell_Name)
-draw_activity_histogram(cell.Raw_Data, cell.Active, cell.Cell_Name)
+draw_centroids(cell_info.Centroids,cell_info.Shape,cell_info.Cell_Name)
+draw_activity_histogram(cell_info.Raw_Data, cell_info.Active, cell_info.Cell_Name)
 
 %% Cluster analysis
 
 % Simulate 50 cells with the same ROI and number of centroids as the cell
 % in the experiment and outputs all_cells_sim_den_distr_50x.mat with 
 % density_distrs and pad_size.
-simulate_uniform_density_distributions(cell.Centroids,cell.Cell_Name,cell.Shape,nsims,pad_size);
+simulate_uniform_density_distributions(cell_info.Centroids,cell_info.Cell_Name,cell_info.Shape,nsims,pad_size);
 
 % Calculate the experimentally observed density distributions. Outputs
 % all_cells_exp_den_distr.mat with density_distrs and pad_size.
-generate_density_distributions(cell.Centroids,cell.Cell_Name,cell.Shape,pad_size);
+generate_density_distributions(cell_info.Centroids,cell_info.Cell_Name,cell_info.Shape,pad_size);
 
 % Compare the densities of experimental voronoi segments to the simulated
 % ones and decides on a cutoff point for the cluster density. Saves
 % 'cutoffs', 'bin_cutoffs', 'binwidth' to 'voronoi_thresh.mat'.
-compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell.Cell_Name); 
+compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_info.Cell_Name); 
 
 % Pick the voronoi segments that dense enough to be clusters and merge
 % adjacent ones. Saves 'segmented_clusters', 'pad_size', 'threshold_data'
 % to 'voronoi_clus.mat'.
-generate_voronoiSegmented_clusters(threshold_data, exp_distrs, cell.Centroids,cell.Cell_Name, cell.Shape, pad_size);
+generate_voronoiSegmented_clusters(threshold_data, exp_distrs, cell_info.Centroids,cell_info.Cell_Name, cell_info.Shape, pad_size);
 
 % Searches through tracks not assigned to clusters in the initial Voronoi
 % segmentation step, then assigns those tracks to clusters if they diffuse
@@ -79,22 +79,22 @@ generate_voronoiSegmented_clusters(threshold_data, exp_distrs, cell.Centroids,ce
 % 'nMultVisTrackFromUnassigned' (number of tracks that visited multiple
 % clusters) and 'nUnassigned' (number of unassigned tracks) in
 % 'refinementI_clusTrackIDs'.
-cluster_refinement_I(clusfile, cell.Tracks, cell.Cell_Name, cell.Centroids,cell.Shape,pixel_size);
+cluster_refinement_I(clusfile, cell_info.Tracks, cell_info.Cell_Name, cell_info.Centroids,cell_info.Shape,pixel_size);
 
 % Temporally separate clusters
-cluster_refinement_II(refIclusfile, RIcutoff, cell.Exposure, cell.Tracks, cell.Cell_Name); 
+cluster_refinement_II(refIclusfile, RIcutoff, cell_info.Exposure, cell_info.Tracks, cell_info.Cell_Name); 
 
 % Add clusterIDs and make RefII_minN cluster figures
-[cell.RefI_ClusID, cell.RefI_ClusID_minN, cell.RefII_ClusID, cell.RefII_ClusID_minN] ...
-    = examine_clusters(minN, clusfile, refIclusfile, refIIclusfile, cell.Tracks, cell.Cell_Name, cell.Shape, cell.Centroids);
+[cell_info.RefI_ClusID, cell_info.RefI_ClusID_minN, cell_info.RefII_ClusID, cell_info.RefII_ClusID_minN] ...
+    = examine_clusters(minN, clusfile, refIclusfile, refIIclusfile, cell_info.Tracks, cell_info.Cell_Name, cell_info.Shape, cell_info.Centroids);
 
 % Save results
-cell.minN = minN;
-save(cell_info_mat, 'cell')
+cell_info.minN = minN;
+save(cell_info_mat, 'cell_info')
 
 
 %% Calculate rates
-model(min_frame, nlayers, layer_width, 0, cell.Cell_Name, cell.Exposure, cell.Shape, cell.Tracks, ...
-    cell.Centroids, cell.Active, cell.RefI_ClusID, cell.Edge_Dists,clusfile)
+model(min_frame, nlayers, layer_width, 0, cell_info.Cell_Name, cell_info.Exposure, cell_info.Shape, cell_info.Tracks, ...
+    cell_info.Centroids, cell_info.Active, cell_info.RefI_ClusID, cell_info.Edge_Dists,clusfile)
 
 end
