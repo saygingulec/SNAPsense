@@ -1,10 +1,12 @@
-function draw_centroids(centroids, cell_ps, cell_name)
+function draw_centroids(centroids, cell_ps, cell_name, fig_save_dir)
 
 warning('off','MATLAB:MKDIR:DirectoryExists')
 
+if exist('fig_save_dir','var')
 mkdir(fig_save_dir)
-
 f = figure;
+end
+
 hold on
 plot(cell_ps)
 scatter(centroids(:,1), centroids(:,2), 1, '.')
@@ -14,7 +16,9 @@ title(cell_name, 'interpreter', 'none')
 daspect([1 1 1])
 hold off
 
+if exist('fig_save_dir','var')
 savefig(f,fig_save_dir + "/" + cell_name + "_roi_test.fig");
 print(f,'-dtiff',fig_save_dir + "/" + cell_name + "_roi_test.tif",'-r300');
+end
 
 end

@@ -57,7 +57,7 @@ edge_dists = all_edge_dists(selected);
 
 % Names
 suptitle_suffix = cell_name + label;
-save_suffix = replace(lower(suptitle_suffix), ' ', '_');
+save_suffix = replace(suptitle_suffix, ' ', '_');
 
 % Check selected tracks
 figure

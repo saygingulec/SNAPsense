@@ -4,6 +4,7 @@ rates/
 preprocessing/
 figures/
 summary/
+download/
 HARDCODED_VARIABLES.TXT
 FIX_THESE.TXT
 *.asv

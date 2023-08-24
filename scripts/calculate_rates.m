@@ -60,21 +60,14 @@ ka = kdi - koi;
 koa = kda * n_oa / act_pop;
 ki = kda - koa;
 
-% Plot
-f = figure;
-
-s = ["Start" "Start" "Active" "Active" "Inactive" "Inactive"];
-t = ["Active" "Inactive" "End" "Inactive" "End" "Active"];
 pona = sum(cellfun(@(x) x(1), activities))/height(activities);
 poni = sum(~cellfun(@(x) x(1), activities))/height(activities);
-weights = [10*pona 10*poni koa ki koi ka];
-G = digraph(s,t,weights);
-LWidths = 5*G.Edges.Weight/max(G.Edges.Weight);
-plot(G,'LineWidth',LWidths, 'ArrowSize', 15, ...
-     'EdgeLabel',[compose("%.4g%%",G.Edges.Weight(1:2)*10); string(round(G.Edges.Weight(3:end), 2))], ...
-     NodeColor=[0 0 0; 0 1 0; 0 0 1; 1 0 0], EdgeFontSize=10, NodeFontSize=10, ...
-     MarkerSize=[5 20*sum(cellfun(@(x) sum(x),activities)) / sum(cellfun(@height,activities)) ...
-                 20*sum(cellfun(@(x) sum(~x),activities)) / sum(cellfun(@height,activities)) 5])
+active_dwell = sum(cellfun(@(x) sum(x),activities)) / sum(cellfun(@height,activities));
+inactive_dwell = sum(cellfun(@(x) sum(~x),activities)) / sum(cellfun(@height,activities));
+
+% Plot
+f = figure;
+rate_figure(pona,poni,koa,ki,koi,ka,active_dwell,inactive_dwell)
 title("Rate Constants" + newline + suptitle_suffix + " (n = " + height(activities) + ")", Interpreter="none")
 
 savefig(f,save_dir + save_suffix + "_rates" + ".fig");
