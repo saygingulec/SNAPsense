@@ -13,7 +13,7 @@
 function generate_voronoiSegmented_clusters(threshold_data, exp_distrs, centroids, cell_name, shape, pad_size, clusfile, fig_save_dir)
 
 warning off
-mkdir('figures/raw_clusters')
+mkdir(fig_save_dir)
 warning on
 
 disp("Generating clusters of " + cell_name)

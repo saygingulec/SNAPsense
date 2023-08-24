@@ -14,11 +14,10 @@
 %
 % Part of the cluster_segmentation.m pipeline.
 
-function compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_name, threshold_data)
+function compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_name, threshold_data, fig_save_dir)
 %%
 warning('off');
-mkdir('figures');
-mkdir('figures/vor_seg_clus_comp')
+mkdir(fig_save_dir)
 warning('on');
 
 exp = load(exp_distrs);
@@ -48,7 +47,7 @@ save(threshold_data,'cutoffs','bin_cutoffs','binwidth');
 
 % Plot and save
 plot_single_cell_smoothed_intersected(exp_areas, sim_areas, tag_color, ...
-    sim_color, 'Exp', 'Sim', binwidth, [0 2000000], "figures/vor_seg_clus_comp/" + cell_name);
+    sim_color, 'Exp', 'Sim', binwidth, [0 2000000], fig_save_dir + cell_name);
 end
 
 

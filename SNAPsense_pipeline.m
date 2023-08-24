@@ -70,7 +70,7 @@ generate_density_distributions(cell_info.Centroids,cell_info.Cell_Name,cell_info
 % Compare the densities of experimental voronoi segments to the simulated
 % ones and decides on a cutoff point for the cluster density. Saves
 % 'cutoffs', 'bin_cutoffs', 'binwidth' to 'voronoi_thresh.mat'.
-compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_info.Cell_Name, threshold_data); 
+compare_voronoicell_size_distributions(exp_distrs, sim_distrs, cell_info.Cell_Name, threshold_data, fig_save_dir+"/vor_seg_clus_comp/"); 
 
 % Pick the voronoi segments that dense enough to be clusters and merge
 % adjacent ones. Saves 'segmented_clusters', 'pad_size', 'threshold_data'

@@ -33,7 +33,7 @@ end
 %% Figure RefII_minN clusters
 
 warning off
-mkdir('figures/RefII_minN_clusters')
+mkdir(fig_save_dir)
 warning on
 
 figure(Visible="on")
