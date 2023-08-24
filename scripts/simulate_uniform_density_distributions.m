@@ -1,4 +1,4 @@
-function simulate_uniform_density_distributions(exp_centroids, cell_name, shape, nsims, pad_size)
+function simulate_uniform_density_distributions(exp_centroids, cell_name, shape, nsims, pad_size, sim_distrs)
 % SIMULATE_UNIFORM_DENSITY_DISTRIBUTIONS_50X
 % Simulates negative controls for the Voronoi-based cluster segmentation.
 % Randomly places points within the cell ROI, corresponding to actual observed

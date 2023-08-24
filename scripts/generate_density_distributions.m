@@ -12,7 +12,7 @@
 % This is for thresholding purposes, and must be compared vs. the
 % simulated density distributions.
 
-function generate_density_distributions(centroids, cell_name, shape, pad_size)
+function generate_density_distributions(centroids, cell_name, shape, pad_size,exp_distrs)
 
 disp("Calculating density distributions of " + cell_name)
     

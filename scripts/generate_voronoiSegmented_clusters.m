@@ -10,7 +10,7 @@
 % Part of the cluster_segmentation.m pipeline.
 
 
-function generate_voronoiSegmented_clusters(threshold_data, exp_distrs, centroids, cell_name, shape, pad_size, fig_save_dir)
+function generate_voronoiSegmented_clusters(threshold_data, exp_distrs, centroids, cell_name, shape, pad_size, clusfile, fig_save_dir)
 
 warning off
 mkdir('figures/raw_clusters')
