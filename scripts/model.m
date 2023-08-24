@@ -1,4 +1,4 @@
-function model(min_frame,nlayers,layer_width,exclude_clusters,cell_name,exposure,shape,all_tracks,all_centroids,all_activities,all_clusters,all_edge_dists,clusfile,fig_save_dir)
+function model(min_frame,nlayers,layer_width,exclude_clusters,cell_name,exposure,shape,all_tracks,all_centroids,all_activities,all_clusters,all_edge_dists,clusfile,fig_save_dir,rate_save_dir)
 %%
 disp("Modeling the dynamics of " + cell_name)
 warning off
