@@ -99,6 +99,6 @@ save(cell_info_mat, 'cell_info')
 
 %% Calculate rates
 model(min_frame, nlayers, layer_width, 0, cell_info.Cell_Name, cell_info.Exposure, cell_info.Shape, cell_info.Tracks, ...
-    cell_info.Centroids, cell_info.Active, cell_info.RefI_ClusID, cell_info.Edge_Dists,clusfile,fig_save_dir+"/model",rate_save_dir)
+    cell_info.Centroids, cell_info.Active, cell_info.RefI_ClusID, cell_info.Edge_Dists,clusfile,fig_save_dir+"/model/",rate_save_dir)
 
 end
