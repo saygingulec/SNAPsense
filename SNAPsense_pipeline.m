@@ -2,22 +2,22 @@ function SNAPsense_pipeline(cell_name)
 
 % The cell_name follows the format: Date_CellLine_Strain_Replicate_CellID_Exposure
 % cell_name leads to cell_name_cell_info.mat
-% cell_name_cell_info.mat contains the struct 'cell' with at least the following attributes:
-%     cell.Path: Path to unprocessed data.
-%     cell.Date: Date of the experiment.
-%     cell.Cell_Line
-%     cell.Strain
-%     cell.Replicate
-%     cell.Cell_ID: Name given by the experimenter
-%     cell.Exposure: Float in ms units. Default is 20 ms.
-%     cell.Cell_Name: Name used in the pipeline
-%     cell.Raw_Data: Matrix for each localization with columns:
+% cell_name_cell_info.mat contains the struct 'cell_info' with at least the following attributes:
+%     cell_info.Path: Path to unprocessed data.
+%     cell_info.Date: Date of the experiment.
+%     cell_info.Cell_Line
+%     cell_info.Strain
+%     cell_info.Replicate
+%     cell_info.Cell_ID: Name given by the experimenter
+%     cell_info.Exposure: Float in ms units. Default is 20 ms.
+%     cell_info.Cell_Name: Name used in the pipeline
+%     cell_info.Raw_Data: Matrix for each localization with columns:
 %           [yy (pixels), xx (pixels), i_ch1, bkg_ch1, i_corrected_ch1, i_ch2, bkg_ch2, i_corrected_ch2, i_corrected_ch2/i_corrected_ch1, t, trackID];
-%     cell.Tracks: Cell array where each cell contains the same columns for one track.
-%     cell.Active: Cell array where each cell contains the activity (0:inactive, 1:active) for one track.
-%     cell.ROI: ImageJ ROI object
-%     cell.Shape: ImageJ ROI as a polyshape object in um
-%     cell.Edge_Dists: Distance to cell edge for each localization
+%     cell_info.Tracks: Cell array where each cell contains the same columns for one track.
+%     cell_info.Active: Cell array where each cell contains the activity (0:inactive, 1:active) for one track.
+%     cell_info.ROI: ImageJ ROI object
+%     cell_info.Shape: ImageJ ROI as a polyshape object in um
+%     cell_info.Edge_Dists: Distance to cell edge for each localization
 
 % Parameters
 pixel_size = 0.1067;  % pixel size in um

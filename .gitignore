@@ -11,3 +11,4 @@ FIX_THESE.TXT
 *.out
 summarise_results.m
 summary_visualization.mlx
+scripts/exp_fit_figure_for_paper.m
